@@ -9,14 +9,18 @@ const Color onSurfaceTextColor = Colors.white;
 const mainGradientLight = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [primaryColorLight, primaryColorLightLight],
+  colors: [primaryColorLightLight, primaryColorLight],
 );
 
 const mainGradientDark = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [primaryColorDark, primaryColorDarkDark],
+  colors: [primaryColorDarkDark, primaryColorDark],
 );
 
-LinearGradient mainGradient(BuildContext context) =>
-    UIParameter.isDarkMode(context) ? mainGradientDark : mainGradientLight;
+LinearGradient mainGradient() =>
+    UIParameter.isDarkMode() ? mainGradientDark : mainGradientLight;
+
+customScaffoldColor() => UIParameter.isDarkMode()
+    ? Color(0xFF2e3c62)
+    : Color.fromARGB(255, 240, 237, 255);

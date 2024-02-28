@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_study_app/theme/app_colors.dart';
 import 'package:flutter_study_app/widgets/app_circle_button.dart';
@@ -31,7 +33,10 @@ class AppIntroduction extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               CircleButton(
-                onTap: () {},
+                onTap: () {
+                  log("message");
+                  Get.toNamed('/home');
+                },
                 child: const Icon(
                   Icons.arrow_forward,
                   size: 35,

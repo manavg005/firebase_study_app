@@ -15,6 +15,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   InitialBinding().dependencies();
   runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
     theme: LightTheme().buildLightTHeme(),
     getPages: AppRoutes.routes(),
     // home: DataUploaderScreen(),

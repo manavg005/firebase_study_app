@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class QuestionPaperModel {
   String? id;
   String? title;
@@ -5,6 +7,7 @@ class QuestionPaperModel {
   String? description;
   int? timeSeconds;
   List<Questions>? questions;
+  int? questionCount;
 
   QuestionPaperModel(
       {this.id,
@@ -12,14 +15,16 @@ class QuestionPaperModel {
       this.imageUrl,
       this.description,
       this.timeSeconds,
-      this.questions});
+      this.questions,
+      this.questionCount});
 
   QuestionPaperModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     imageUrl = json['image_url'];
-    description = json['Description'];
-    timeSeconds = json['time_seconds'];
+    description = json['description'];
+    timeSeconds = json['timeSeconds'];
+    questionCount = 0;
     if (json['questions'] != null) {
       questions = <Questions>[];
       json['questions'].forEach((v) {
@@ -27,6 +32,25 @@ class QuestionPaperModel {
       });
     }
   }
+
+  /// Json from firebase database
+  QuestionPaperModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> json) {
+    id = json.id;
+    title = json['title'];
+    imageUrl = json['image_url'];
+    description = json['description'];
+    timeSeconds = json['timeSeconds'];
+    questionCount = json['questions_count'];
+    questions = [];
+
+    /*if (json['questions'] != null) {
+      questions = <Questions>[];
+      json['questions'].forEach((v) {
+        questions!.add(new Questions.fromJson(v));
+      });
+    }*/
+  }
+  String timeInMin() => "${(timeSeconds! / 60).ceil()} mins";
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
