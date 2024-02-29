@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,16 +49,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCA08qyozha9OTsWxp6arCcxQy07kRWX5E',
-    appId: '1:626159986782:web:6c7053e3f8a67a5aedeccf',
-    messagingSenderId: '626159986782',
-    projectId: 'study-app-dacd5',
-    authDomain: 'study-app-dacd5.firebaseapp.com',
-    storageBucket: 'study-app-dacd5.appspot.com',
-    measurementId: 'G-CWNKYXXSW5',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAg8R9jyoeXF0G1fIgT_CIQoYw7FkauUco',
     appId: '1:626159986782:android:74693fab5d468ec9edeccf',
@@ -67,15 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '626159986782',
     projectId: 'study-app-dacd5',
     storageBucket: 'study-app-dacd5.appspot.com',
+    androidClientId: '626159986782-sgcebfmi7156hhll7kae6nf3kio2ankq.apps.googleusercontent.com',
+    iosClientId: '626159986782-ptuvm1svs1b1veqnm8os0sa6kh9ap1k4.apps.googleusercontent.com',
     iosBundleId: 'com.example.study.flutterStudyApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCZdVz--U96UUc0yX2uVbsEfa7L3NmFdx0',
-    appId: '1:626159986782:ios:4f8c7339a164b5d5edeccf',
-    messagingSenderId: '626159986782',
-    projectId: 'study-app-dacd5',
-    storageBucket: 'study-app-dacd5.appspot.com',
-    iosBundleId: 'com.example.study.flutterStudyApp.RunnerTests',
   );
 }
