@@ -39,6 +39,7 @@ class AuthController extends GetxController {
         );
         await _auth.signInWithCredential(_credential);
         await saveUser(account);
+        navigateToHomePage();
       }
     } on Exception catch (error) {
       print(error);
@@ -72,5 +73,26 @@ class AuthController extends GetxController {
 
   bool isLoggedIn() {
     return _auth.currentUser != null;
+  }
+
+  User? getUser() {
+    _user.value = _auth.currentUser;
+    return _user.value;
+  }
+
+  signOut() async {
+    int a = 5;
+    num b = 8;
+    a.isEven;
+    try {
+      await FirebaseAuth.instance.signOut();
+      navigateToHomePage();
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
+
+  void navigateToHomePage() {
+    Get.offAllNamed('/home');
   }
 }
